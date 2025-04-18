@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Here for enabling dark mode via custom-variant*/
+@custom-variant dark (&:where(.dark, .dark *));
