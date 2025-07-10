@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomControllers\FetchMassiveDataController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -14,8 +15,8 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 Route::redirect('/', '/note')->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group( function(){
- Route::resource('note', NoteController::class);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('note', NoteController::class);
 });
 
 Route::middleware('auth')->group(function () {
@@ -23,6 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::prefix('/normal')
+    ->controller(FetchMassiveDataController::class)
+    ->name('normal')
+    ->group(function () {
+        Route::get('/users', 'index')->name('.users.index');
+        Route::get('/users/export', 'export')->name('.users.export');
+    });
 
 // Route::get('/some', [WelcomeController::class ,  'index'])->name('welcome.index');
 // Route::get('note', [NoteController::class, 'index'])->name('note.index');
@@ -36,4 +45,4 @@ Route::middleware('auth')->group(function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
