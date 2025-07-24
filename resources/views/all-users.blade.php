@@ -9,3 +9,9 @@
         <p style="color: red;">You're about to export all users. This may take time.</p>
     @endif
 </div>
+
+<div>
+    <form method="GET" action="{{route('normal.contributions.export')}}">
+        <button type="submit">Get contributions Excel</button>
+    </form>
+</div>

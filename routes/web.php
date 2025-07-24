@@ -31,6 +31,7 @@ Route::prefix('/normal')
     ->group(function () {
         Route::get('/users', 'index')->name('.users.index');
         Route::get('/users/export', 'export')->name('.users.export');
+        Route::get('/contributions/export', 'exportContributions')->name('.contributions.export');
     });
 
 // Route::get('/some', [WelcomeController::class ,  'index'])->name('welcome.index');
